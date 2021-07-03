@@ -150,8 +150,9 @@ export default class Game {
     }
 
     //for edge cases of no remaining rows or columns
-    if (!trimmedGame.height) trimmedGame.origin.y = 0;
-    if (!trimmedGame.width) trimmedGame.origin.x = 0;
+    if (!trimmedGame.height && !trimmedGame.width) {
+      return new Game();
+    }
 
     return trimmedGame;
   }
