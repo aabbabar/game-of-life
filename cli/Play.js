@@ -69,7 +69,7 @@ class Play {
         type    : 'select',
         name    : 'choice',
         message : 'Game Over!',
-        choices : [ { title: 'Play again!', value: 1 }, { title: 'Quit', value: 0 } ],
+        choices : [ { title: 'Play again!', value: 1 }, { title: 'Back to main menu', value: 0 } ],
         initial : 0
       }
     };
