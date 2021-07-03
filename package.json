@@ -1,0 +1,24 @@
+{
+  "name": "game-of-life",
+  "version": "1.0.0",
+  "description": "an implementation of Conway's 'Game of Life'",
+  "main": "index.js",
+  "scripts": {
+    "start": "node cli/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aabbabar/game-of-life.git"
+  },
+  "author": "aabbabar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aabbabar/game-of-life/issues"
+  },
+  "homepage": "https://github.com/aabbabar/game-of-life#readme",
+  "type": "module",
+  "dependencies": {
+    "prompts": "^2.4.1"
+  }
+}

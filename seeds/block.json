@@ -1,0 +1,8 @@
+{
+	"name": "block",
+	"type": "stillLife",
+	"grid": [
+		[1, 1],
+		[1, 1]
+	]
+}

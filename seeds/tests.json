@@ -1,0 +1,63 @@
+{
+	"0": {
+		"name": "No interactions",
+		"type": "test",
+		"grid": [
+			[0]
+		]
+	},
+	"1": {
+		"name": "Underpopulation",
+		"type": "test",
+		"grid": [
+			[1, 0, 0],
+			[0, 1, 0],
+			[0, 0, 0]
+		]
+	},
+	"2": {
+		"name": "Overcrowding",
+		"type": "test",
+		"grid": [
+			[1, 0, 1],
+			[0, 1, 0],
+			[0, 1, 1]
+		]
+	},
+	"3": {
+		"name": "Survival",
+		"type": "test",
+		"grid": [
+			[1, 0, 1],
+			[0, 1, 0],
+			[0, 1, 0]
+		]
+	},
+	"4": {
+		"name": "Creation of Life",
+		"type": "test",
+		"grid": [
+			[1, 0, 1],
+			[0, 0, 0],
+			[0, 1, 0]
+		]
+	},
+	"5": {
+		"name": "Grid with no live cells",
+		"type": "test",
+		"grid": [
+			[0, 0, 0],
+			[0, 0, 0],
+			[0, 0, 0]
+		]
+	},
+	"6": {
+		"name": "Expected game outcome for seeded grid",
+		"type": "test",
+		"grid": [
+			[0, 0, 0],
+			[1, 1, 1],
+			[0, 0, 0]
+		]
+	}
+}
