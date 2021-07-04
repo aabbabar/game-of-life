@@ -1,0 +1,9 @@
+{
+	"name": "r-pentomino",
+	"type": "methuselah",
+	"grid": [
+		[0, 1, 1],
+		[1, 1, 0],
+		[0, 1, 0]
+	]
+}
