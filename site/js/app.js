@@ -24,7 +24,7 @@ function loadDemo(name) {
   const frame = document.createElement('iframe');
   frame.setAttribute('scrolling', 'no');
   frame.setAttribute('frameborder', '0');
-  frame.setAttribute('src', `../../sketches/html/${name}.html`);
+  frame.setAttribute('src', `./sketches/html/${name}.html`);
   if (demoBlurb.style.display !== 'none') demoBlurb.style.display = 'none';
   if (demoContainer.children.length) demoContainer.children[0].remove();
   demoContainer.style.width = sketchWidths[name];
