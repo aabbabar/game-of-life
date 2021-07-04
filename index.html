@@ -68,6 +68,13 @@
 
             <div class="column is-3 ml-3 mt-4">
                 <aside class="menu">
+                  <ul class="menu-list mb-5">
+                    <li>
+                        <ul>
+                            <li><a href="#docs-intro">Introduction</a></li>
+                        </ul>
+                    </li>
+                  </ul>
                     <p class="menu-label has-text-weight-bold is-size-5">Cell</p>
                     <ul class="menu-list">
                         <li>
@@ -114,30 +121,35 @@
                 </aside>
             </div>
 
-            <div class="column is-9">
-                <h1 class="title is-2 has-text-grey has-text-weight-medium pb-3">Docs</h1>
-                <h2 class="title is-5 has-text-grey-lighter has-text-weight-light pb-4 mb-2">The program is defined using two objects: <a href="#docs-cell" class="link-underline">Cell</a> and <a href="#docs-game" class="link-underline">Game</a></h2>
+            <div class="column is-7">
+                <h1 id="docs-intro" class="title is-2 has-text-grey has-text-weight-medium pb-3">Docs</h1>
+
+                <p class="has-text-grey-lighter mb-3 mt-4">An optimised implementation of Game of Life, only computing active cells (a cell being considered 'active' only if it is alive or has at least one neighbour).</p>
+                <p class="has-text-grey-lighter mb-3">Improves on solutions which store data on every cell in a two-dimensional array. For example when counting neighbours, in a two-dimensional array the program must iterate through every cell and check its eight neighbours. This program however can iterate through only the live cells, and increment the counts of its neighbours, saving many iterations every generation.</p>
+                <p class="has-text-grey-lighter mb-6">Additionally, this implementation can be played on the infinite grid. By only tracking live cells, no extra memory is needed to track seeds which travel indefinitely (known as Spaceships).</p>
+
+                <h2 class="title is-5 has-text-grey-lighter has-text-weight-light mb-2">The program is defined using two objects: <a href="#docs-cell" class="link-underline">Cell</a> and <a href="#docs-game" class="link-underline">Game</a></h2>
 
                 <h3 id="docs-cell" class="title is-1 has-text-grey-lighter has-text-weight-semibold pt-6 mb-5 pb-3">Cell</h3>
 
-                <p class="has-text-grey-lighter mb-5">Cell is an object that represents an active cell.</p>
-                <p class="has-text-grey-lighter mb-5">A cell is defined as active if either it is alive or it has at least one neighbour. All other cells are disregarded, as they cannot affect the evolution of the game state.</p>
+                <p class="has-text-grey-lighter mb-3">Cell is an object that represents an active cell.</p>
+                <p class="has-text-grey-lighter mb-3">A cell is defined as active if either it is alive or it has at least one neighbour. All other cells are disregarded, as they cannot affect the evolution of the game state.</p>
 
                 <p class="has-text-grey-lighter">A Cell has two properties:</p>
 
-                <h4 id="cell-live" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Cell.isLive</h4>
+                <h4 id="cell-live" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-3 pb-3 has-underline">Cell.isLive</h4>
                 <p class="has-text-grey-lighter">a Boolean representing if this Cell is currently alive.</p>
 
-                <h4 id="cell-neigh" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Cell.neighbours</h4>
+                <h4 id="cell-neigh" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-3 pb-3 has-underline">Cell.neighbours</h4>
                 <p class="has-text-grey-lighter">an Integer representing how many neighbours this Cell has.</p>
 
-                <h3 id="docs-game" class="title is-1 has-text-grey-lighter has-text-weight-semibold mt-6 pt-6 mb-5 pb-3">Game</h3>
+                <h3 id="docs-game" class="title is-1 has-text-grey-lighter has-text-weight-semibold mt-6 pt-6 mb-3 pb-3">Game</h3>
 
                 <p class="has-text-grey-lighter ">Game is an object that represents the current game state. It contains the following properties and methods:</p>
 
-                <h4 id="game-cells" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.cells</h4>
+                <h4 id="game-cells" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-3 pb-3 has-underline">Game.cells</h4>
 
-                <p class="has-text-grey-lighter mb-5">Contains all the active cells, represented as Cell objects. These are stored in a object with the following data structure for a n * m grid:</p>
+                <p class="has-text-grey-lighter mb-12">Contains all the active cells, represented as Cell objects. These are stored in a object with the following data structure for a n * m grid:</p>
 
                 <pre>
               <code class="language-js">Game.cells = {
@@ -149,7 +161,7 @@
 }</code>
             </pre>
 
-                <p class="has-text-grey-lighter my-5">For example, given the following grid, represented as a 2D array:</p>
+                <p class="has-text-grey-lighter my-2">For example, given the following grid, represented as a 2D array:</p>
 
                 <pre>
             <code class="language-js">seed = [
@@ -159,7 +171,7 @@
        ]</code>
           </pre>
 
-                <p class="has-text-grey-lighter my-5">Game.cells will represent this as:</p>
+                <p class="has-text-grey-lighter my-2">Game.cells will represent this initial state as:</p>
 
                 <pre>
             <code class="language-js">Game.cells =  {
@@ -168,51 +180,51 @@
 }
 </code>
           </pre>
-
-                <h4 id="game-width" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.width</h4>
+                <p class="has-text-grey-lighter my-2">By using this data structure, the program gains efficiancy through being able to iterate over only active cells, but also can check a specific coordinate in constant time, retaining the advantage of using an Array over an Object. </p>
+                <h4 id="game-width" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.width</h4>
                 <p class="has-text-grey-lighter">Stores height of current grid, in cell units</p>
 
-                <h4 id="game-height" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.height</h4>
+                <h4 id="game-height" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.height</h4>
                 <p class="has-text-grey-lighter">Stores height of current grid, in cell units</p>
 
-                <h4 id="game-origin" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.origin</h4>
-                <p class="has-text-grey-lighter mb-5">The origin is defined as the top-left corner of the seed grid. This point is designated as [ 0, 0 ]. </p>
-                <p class="has-text-grey-lighter mb-5">The Game.origin property stores the co-ordinates of the top-left corner of its grid, relative to the origin.</p>
-                <p class="has-text-grey-lighter mb-5">This becomes important for seeds that travel across the grid (spaceships). Keeping track of the origin ensures no extra memory is needed as the seed travels further across the infinite grid.</p>
+                <h4 id="game-origin" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.origin</h4>
+                <p class="has-text-grey-lighter mb-4">The origin is defined as the top-left corner of the seed grid. This point is designated as [ 0, 0 ]. </p>
+                <p class="has-text-grey-lighter mb-4">The Game.origin property stores the co-ordinates of the top-left corner of its grid, relative to the origin.</p>
+                <p class="has-text-grey-lighter mb-4">This becomes important for seeds that travel across the grid (spaceships). Keeping track of the origin ensures no extra memory is needed as the seed travels further across the infinite grid.</p>
 
-                <h4 id="game-evolve" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.evolve()</h4>
-                <p class="has-text-grey-lighter mb-5">Evolves the current state and returns the next generation of the Game.</p>
-                <p class="has-text-grey-lighter mb-5">Encapsulates the entire process by chaining the following four methods.</p>
+                <h4 id="game-evolve" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.evolve()</h4>
+                <p class="has-text-grey-lighter mb-4">Evolves the current state and returns the next generation of the Game.</p>
+                <p class="has-text-grey-lighter mb-4">Encapsulates the entire process by chaining the following four methods.</p>
 
-                <h4 id="game-pad" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.pad()</h4>
-                <p class="has-text-grey-lighter mb-5">Adds a perimeter of empty cells around the current grid.</p>
-                <p class="has-text-grey-lighter mb-5">This allows for counting the neighbours' of the Cells on the edge of the grid.</p>
+                <h4 id="game-pad" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.pad()</h4>
+                <p class="has-text-grey-lighter mb-4">Adds a perimeter of empty cells around the current grid.</p>
+                <p class="has-text-grey-lighter mb-4">This allows for counting the neighbours' of the Cells on the edge of the grid.</p>
 
-                <h4 id="game-count" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.countNeighbours()</h4>
-                <p class="has-text-grey-lighter mb-5">Counts the neighbours for all Cells.</p>
-                <p class="has-text-grey-lighter mb-5">By using the data structure outlined in Game.cells, this step can run more efficiently than if a 2D array was stored.</p>
-                <p class="has-text-grey-lighter mb-5">Iterates over all live Cells (in Game.cells) and increments the neighbour counts of each of its neighbours, first adding a dead Cell if there is no Cell to represent a neighbour.</p>
+                <h4 id="game-count" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.countNeighbours()</h4>
+                <p class="has-text-grey-lighter mb-4">Counts the neighbours for all Cells.</p>
+                <p class="has-text-grey-lighter mb-4">By using the data structure outlined in Game.cells, this step can run more efficiently than if a 2D array was stored.</p>
+                <p class="has-text-grey-lighter mb-4">Iterates over all live Cells (in Game.cells) and increments the neighbour counts of each of its neighbours, first adding a dead Cell if there is no Cell to represent a neighbour.</p>
 
-                <h4 id="game-repop" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.repopulate()</h4>
-                <p class="has-text-grey-lighter mb-5">Implements the rules and repopulates the Game accordingly.</p>
-                <p class="has-text-grey-lighter mb-5">The rules have been condensed and are described as follows:</p>
+                <h4 id="game-repop" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.repopulate()</h4>
+                <p class="has-text-grey-lighter mb-4">Implements the rules and repopulates the Game accordingly.</p>
+                <p class="has-text-grey-lighter mb-4">The rules have been condensed and are described as follows:</p>
                 <p class="has-text-grey-lighter">For every active Cell (iterating over Game.cells) it lives to the next generation if it:</p>
                 <p class="has-text-grey-lighter"> - Is alive and has two or three neighbours.</p>
-                <p class="has-text-grey-lighter mb-5"> - Is not alive and has three neighbours.</p>
-                <p class="has-text-grey-lighter mb-5">All other active Cells are removed from the Game.</p>
+                <p class="has-text-grey-lighter mb-4"> - Is not alive and has three neighbours.</p>
+                <p class="has-text-grey-lighter mb-4">All other active Cells are removed from the Game.</p>
 
-                <h4 id="game-trim" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.trim()</h4>
-                <p class="has-text-grey-lighter mb-5">Removes any empty border rows and columns.</p>
-                <p class="has-text-grey-lighter mb-5">By using the data structure outlined in Game.cells, this step can run more efficiently than if a 2D array was stored.</p>
+                <h4 id="game-trim" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.trim()</h4>
+                <p class="has-text-grey-lighter mb-4">Removes any empty border rows and columns.</p>
+                <p class="has-text-grey-lighter mb-4">By using the data structure outlined in Game.cells, this step can run more efficiently than if a 2D array was stored.</p>
 
-                <h4 id="game-dupl" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.duplicate()</h4>
-                <p class="has-text-grey-lighter mb-5">Returns a duplicate of the Game object.</p>
-                <p class="has-text-grey-lighter mb-5">Allows Game methods to be pure functions, not mutating the input Game.</p>
+                <h4 id="game-dupl" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.duplicate()</h4>
+                <p class="has-text-grey-lighter mb-4">Returns a duplicate of the Game object.</p>
+                <p class="has-text-grey-lighter mb-4">Allows Game methods to be pure functions, not mutating the input Game.</p>
 
-                <h4 id="game-grid" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.grid</h4>
-                <p class="has-text-grey-lighter mb-5">Getter that returns a 2D Array representation of the Game.</p>
+                <h4 id="game-grid" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.grid</h4>
+                <p class="has-text-grey-lighter mb-4">Getter that returns a 2D Array representation of the Game.</p>
 
-                <h4 id="game-print" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-5 pb-3 has-underline">Game.print()</h4>
+                <h4 id="game-print" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.print()</h4>
                 <p class="has-text-grey-lighter">Formats a string representing current state of Game and prints using console.log().</p>
 
             </div>
@@ -265,12 +277,12 @@
                 </aside>
             </div>
 
-            <div class="column is-8">
+            <div class="column is-7">
                 <div id="demo-blurb" class="block">
                     <h1 class="title is-2 has-text-grey has-text-weight-medium pb-3">Demos</h1>
                     <p class="has-text-grey-lighter">Here you can view visualisations of various seeds being run by the program. The game state evolves to the next generation 5 times every second.</p>
-                    <p class="has-text-grey-lighter pt-3">The visualisations are embedded <a class="has-text-grey-light has-underline" href="https://p5js.org/" target="_blank">p5.js</a> sketches, with the program being executed in real time in the browser. All seed and p5 sketch data can be found in the <a class="has-text-grey-light has-underline" href="https://github.com/aabbabar/game-of-life" target="_blank">GitHub repo</a>.</p>
-                    <p class="has-text-grey-lighter pt-6 mt-3">Select a seed from the menu to begin.</p>
+                    <p class="has-text-grey-lighter pt-3">The visualisations have been created using <a class="has-text-grey-light has-underline" href="https://p5js.org/" target="_blank">p5.js</a>. The sketches are embedded, with the program being executed in real time in the browser. All seed and p5 sketch data can be found in the <a class="has-text-grey-light has-underline" href="https://github.com/aabbabar/game-of-life" target="_blank">GitHub repo</a>.</p>
+                    <p class="has-text-grey-lighter pt-3 mt-3">Select a seed from the menu to begin.</p>
                 </div>
 
                 <div class="block is-flex is-flex-direction-column is-align-items-center">
