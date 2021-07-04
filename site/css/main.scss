@@ -6,13 +6,12 @@ $family-sans-serif: 'IBM Plex Mono', monospace;
 $primary: rgb(78, 0, 255);
 $body-background-color: $black;
 
+@import "../../node_modules/bulma/bulma";
 
 iframe {
   width: 100%;
   height: 540px;
 }
-
-@import "../../node_modules/bulma/bulma";
 
 
 .has-underline {
