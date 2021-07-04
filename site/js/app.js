@@ -51,4 +51,4 @@ seedMenu.forEach((seedChoice) =>
 );
 
 
-window.addEventListener('load', () => showPage(links[4]));
+window.addEventListener('load', () => showPage(links[0]));
