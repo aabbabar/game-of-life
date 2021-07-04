@@ -15,6 +15,12 @@ export default class Game {
         this.addCell(x, y);
       }
     }
+
+    // handles edge case of seed being a large empty grid
+    if (Object.keys(this.cells).length === 1 && Object.keys(this.cells[0]).length === 0) {
+      this.width = 1;
+      this.height = 1;
+    }
   }
 
   // adds a new cell to this Game
