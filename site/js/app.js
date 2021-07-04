@@ -10,7 +10,12 @@ const sketchWidths = {
   beacon          : '540px',
   pentadecathalon : '330px',
   glider          : '540px',
-  lwss            : '720px'
+  lwss            : '720px',
+  'r-pentomino'   : '720px',
+  'pi-heptomino'  : '720px',
+  acorn           : '720px',
+  blinker         : '540px',
+  loafer         : '720px',
 };
 
 function toggleDemoBlurb() {
@@ -49,6 +54,5 @@ links.forEach((link) => {
 seedMenu.forEach((seedChoice) =>
   seedChoice.addEventListener('click', (choice) => loadDemo(choice.target.id))
 );
-
 
 window.addEventListener('load', () => showPage(links[0]));

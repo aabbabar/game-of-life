@@ -24,6 +24,11 @@ class Play {
             title       : 'Spaceship',
             description : 'seeds that travel across the grid',
             value       : 'whichSpaceship'
+          },
+          {
+            title       : 'Methuselah',
+            description : 'seeds that stabilize after a long time',
+            value       : 'whichMethuselah'
           }
         ],
         initial : 0
@@ -43,6 +48,7 @@ class Play {
         name    : 'choice',
         message : 'Choose an oscillator:',
         choices : [
+          { title: 'Blinker', value: 'blinker' },
           { title: 'Beacon', value: 'beacon' },
           { title: 'Penta-decathalon', value: 'pentadecathalon' }
         ],
@@ -54,7 +60,19 @@ class Play {
         message : 'Choose a spaceship:',
         choices : [
           { title: 'Glider', value: 'glider' },
+          { title: 'Loafer', value: 'loafer' },
           { title: 'Lightweight Spaceship', value: 'lwss' }
+        ],
+        initial : 0
+      },
+      whichMethuselah     : {
+        type    : 'select',
+        name    : 'choice',
+        message : 'Choose a methuselah:',
+        choices : [
+          { title: 'Acorn', value: 'acorn' },
+          { title: 'R-pentomino', value: 'r-pentomino' },
+          { title: 'Pi-heptomino', value: 'pi-heptomino' }
         ],
         initial : 0
       },
@@ -62,7 +80,7 @@ class Play {
         type    : 'number',
         name    : 'choice',
         min     : 0,
-        max     : 512,
+        max     : 100,
         message : 'Play for how many generations?'
       },
       playAgain          : {

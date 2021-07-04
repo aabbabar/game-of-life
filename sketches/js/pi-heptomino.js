@@ -1,14 +1,14 @@
-import Game from '../app/Game.js';
+import Game from '../../app/Game.js';
 
 let seed;
 let game;
 
 // set location of seed JSON file
-const seedPath = '../seeds/squaredance.json';
+const seedPath = '../../seeds/pi-heptomino.json';
 
 // set resolution to a divisor of width and height
-const [ width, height ] = [ 1080, 540 ];
-const resolution = 10;
+const [ width, height ] = [ 720, 540 ];
+const resolution = 12;
 
 // central width and height coordinates
 let centreWidth = Math.floor(width / resolution / 2);
@@ -22,11 +22,10 @@ new p5(function(p5) {
 
   p5.setup = function() {
     p5.createCanvas(width, height);
-    p5.frameRate(6);
+    p5.frameRate(5);
     p5.background(0);
 
     game = new Game(seed.grid);
-    console.log(game);
 
     // get width and height of seed grid
     let seedWidth = seed.grid[0].length;
@@ -46,8 +45,8 @@ new p5(function(p5) {
 
   function drawGrid() {
     p5.fill(6);
-    p5.stroke(65, 65, 65);
-    p5.strokeWeight(1);
+    p5.stroke(45, 45, 45);
+    p5.strokeWeight(2);
     
     // for every cell draw an empty square, to make a grid
     for (let y = 0; y <= height / resolution; y++) {
@@ -66,7 +65,7 @@ new p5(function(p5) {
       for (let x in game.cells[y]) {
         const cellX = x * resolution + centreWidth * resolution;
         const cellY = y * resolution + centreHeight * resolution;
-        if (game.cells[y][x]) p5.square(cellX, cellY, resolution);
+        if (game.cells[y][x]) p5.square(cellX, cellY, resolution, 3);
       }
     }
   }
