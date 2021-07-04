@@ -19,6 +19,7 @@
   "homepage": "https://github.com/aabbabar/game-of-life#readme",
   "type": "module",
   "dependencies": {
+    "bulma": "^0.9.3",
     "prompts": "^2.4.1"
   }
 }

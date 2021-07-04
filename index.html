@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{ game-of-life }</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="./css/prism.css"> -->
+    <link rel="stylesheet" href="./site/css/main.css">
+</head>
+
+<body class="has-navbar-fixed-top">
+    <nav class="navbar is-fixed-top has-background-black" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item  has-text-white-bis"><strong>{ game-of-life }</strong></a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarMenu" class="navbar-menu has-background-black">
+            <div class="navbar-start">
+                <a class="navbar-item has-text-grey-light">Docs</a>
+                <a class="navbar-item has-text-grey-light">Demos</a>
+                <a class="navbar-item has-text-grey-light">CLI</a>
+
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item mx-3">
+                    <div class="buttons">
+                        <a class="button is-light is-outlined is-small" target="_blank" href="https://github.com/aabbabar/game-of-life">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path>
+             </svg>
+                            <p class="has-text-weight-bold ml-1">view source</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="page">
+        <div class="hero is-fullheight-with-navbar is-align-items-center is-justify-content-center">
+            <div class="hero-body is-flex is-flex-direction-column is-justify-content-center column is-10">
+
+                <!-- <h1 class="title is-2 has-text-grey has-text-weight-medium mb-6">About</h1> -->
+                <h2 class="title is-5 has-text-grey-lighter has-text-weight-bold mb-5 is-align-self-flex-start">An implementation of <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" class="has-text-white has-underline" target="_blank">Conway's Game of Life</a></h2>
+                <p class="has-text-grey-lighter pb-5">Game of Life is a zero-player game, played as a mathematical simulation. The game is set in an infinite two-dimensional grid. Each point on the grid is considered as a cell, which can be either alive or dead. A set of simple rules, based on each cell's life status and its number of neighbours, determines the evolution of the game.</p>
+                <p class="has-text-grey-lighter">When the game is visualised, patterns of remarkable complexity and beauty begin to emerge, and lifelike forms and behaviours can be observed.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="page mt-6" id="2">
+        <div class="columns">
+
+            <div class="column is-3 ml-3 mt-4">
+                <aside class="menu">
+                  <ul class="menu-list mb-5">
+                    <li>
+                        <ul>
+                            <li><a href="#docs-intro">Introduction</a></li>
+                        </ul>
+                    </li>
+                  </ul>
+                    <p class="menu-label has-text-weight-bold is-size-5">Cell</p>
+                    <ul class="menu-list">
+                        <li>
+                            <ul>
+                                <li><a href="#cell-live">Cell.isLive</a></li>
+                                <li><a href="#cell-neigh">Cell.neighbours</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="menu-label has-text-weight-bold is-size-5">Game</p>
+                    <ul class="menu-list mb-4">
+                        <li>
+                            <ul>
+                                <p class="menu-label is-size-7 has-text-weight-bold mb-1">attributes</p>
+                                <li><a href="#game-cells">Game.cells</a></li>
+                                <li><a href="#game-height">Game.height</a></li>
+                                <li><a href="#game-width">Game.width</a></li>
+                                <li><a href="#game-origin">Game.origin</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li>
+                            <ul>
+                                <p class="menu-label is-size-7 has-text-weight-bold mb-1">methods</p>
+                                <li><a href="#game-evolve">Game.evolve()</a></li>
+                                <li><a href="#game-pad">Game.pad()</a></li>
+                                <li><a href="#game-count">Game.countNeighbours()</a></li>
+                                <li><a href="#game-repop">Game.repopulate()</a></li>
+                                <li><a href="#game-trim">Game.trim()</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li>
+                            <ul>
+                                <p class="menu-label is-size-7 has-text-weight-bold mb-1">helpers</p>
+                                <li><a href="#game-dupl">Game.duplicate()</a></li>
+                                <li><a href="#game-grid">Game.grid</a></li>
+                                <li><a href="#game-print">Game.print()</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="column is-7">
+                <h1 id="docs-intro" class="title is-2 has-text-grey has-text-weight-medium pb-3">Docs</h1>
+
+                <p class="has-text-grey-lighter mb-3 mt-4">An optimised implementation of Game of Life, only computing active cells (a cell being considered 'active' only if it is alive or has at least one neighbour).</p>
+                <p class="has-text-grey-lighter mb-3">Improves on solutions which store data on every cell in a two-dimensional array. For example when counting neighbours, in a two-dimensional array the program must iterate through every cell and check its eight neighbours. This program however can iterate through only the live cells, and increment the counts of its neighbours, saving many iterations every generation.</p>
+                <p class="has-text-grey-lighter mb-6">Additionally, this implementation can be played on the infinite grid. By only tracking live cells, no extra memory is needed to track seeds which travel indefinitely (known as Spaceships).</p>
+
+                <h2 class="title is-5 has-text-grey-lighter has-text-weight-light mb-2">The program is defined using two objects: <a href="#docs-cell" class="link-underline">Cell</a> and <a href="#docs-game" class="link-underline">Game</a></h2>
+
+                <h3 id="docs-cell" class="title is-1 has-text-grey-lighter has-text-weight-semibold pt-6 mb-5 pb-3">Cell</h3>
+
+                <p class="has-text-grey-lighter mb-3">Cell is an object that represents an active cell.</p>
+                <p class="has-text-grey-lighter mb-3">A cell is defined as active if either it is alive or it has at least one neighbour. All other cells are disregarded, as they cannot affect the evolution of the game state.</p>
+
+                <p class="has-text-grey-lighter">A Cell has two properties:</p>
+
+                <h4 id="cell-live" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-3 pb-3 has-underline">Cell.isLive</h4>
+                <p class="has-text-grey-lighter">a Boolean representing if this Cell is currently alive.</p>
+
+                <h4 id="cell-neigh" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-3 pb-3 has-underline">Cell.neighbours</h4>
+                <p class="has-text-grey-lighter">an Integer representing how many neighbours this Cell has.</p>
+
+                <h3 id="docs-game" class="title is-1 has-text-grey-lighter has-text-weight-semibold mt-6 pt-6 mb-3 pb-3">Game</h3>
+
+                <p class="has-text-grey-lighter ">Game is an object that represents the current game state. It contains the following properties and methods:</p>
+
+                <h4 id="game-cells" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-3 pb-3 has-underline">Game.cells</h4>
+
+                <p class="has-text-grey-lighter mb-12">Contains all the active cells, represented as Cell objects. These are stored in a object with the following data structure for a n * m grid:</p>
+
+                <pre>
+              <code class="language-js">Game.cells = {
+  y[0] : { x[0]: Cell, ... , x[n]: Cell},
+                      
+                       ...
+
+  y[m] : { x[0]: Cell, ... , x[n]: Cell}
+}</code>
+            </pre>
+
+                <p class="has-text-grey-lighter my-2">For example, given the following grid, represented as a 2D array:</p>
+
+                <pre>
+            <code class="language-js">seed = [
+        [ 1, 1, 0 ],
+        [ 0, 0, 0 ],
+        [ 1, 0, 1 ]
+       ]</code>
+          </pre>
+
+                <p class="has-text-grey-lighter my-2">Game.cells will represent this initial state as:</p>
+
+                <pre>
+            <code class="language-js">Game.cells =  {
+      0 : { 0: Cell, 1: Cell },
+      2 : { 0: Cell, 2: Cell }
+}
+</code>
+          </pre>
+                <p class="has-text-grey-lighter my-2">By using this data structure, the program gains efficiancy through being able to iterate over only active cells, but also can check a specific coordinate in constant time, retaining the advantage of using an Array over an Object. </p>
+                <h4 id="game-width" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.width</h4>
+                <p class="has-text-grey-lighter">Stores height of current grid, in cell units</p>
+
+                <h4 id="game-height" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.height</h4>
+                <p class="has-text-grey-lighter">Stores height of current grid, in cell units</p>
+
+                <h4 id="game-origin" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.origin</h4>
+                <p class="has-text-grey-lighter mb-4">The origin is defined as the top-left corner of the seed grid. This point is designated as [ 0, 0 ]. </p>
+                <p class="has-text-grey-lighter mb-4">The Game.origin property stores the co-ordinates of the top-left corner of its grid, relative to the origin.</p>
+                <p class="has-text-grey-lighter mb-4">This becomes important for seeds that travel across the grid (spaceships). Keeping track of the origin ensures no extra memory is needed as the seed travels further across the infinite grid.</p>
+
+                <h4 id="game-evolve" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.evolve()</h4>
+                <p class="has-text-grey-lighter mb-4">Evolves the current state and returns the next generation of the Game.</p>
+                <p class="has-text-grey-lighter mb-4">Encapsulates the entire process by chaining the following four methods.</p>
+
+                <h4 id="game-pad" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.pad()</h4>
+                <p class="has-text-grey-lighter mb-4">Adds a perimeter of empty cells around the current grid.</p>
+                <p class="has-text-grey-lighter mb-4">This allows for counting the neighbours' of the Cells on the edge of the grid.</p>
+
+                <h4 id="game-count" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.countNeighbours()</h4>
+                <p class="has-text-grey-lighter mb-4">Counts the neighbours for all Cells.</p>
+                <p class="has-text-grey-lighter mb-4">By using the data structure outlined in Game.cells, this step can run more efficiently than if a 2D array was stored.</p>
+                <p class="has-text-grey-lighter mb-4">Iterates over all live Cells (in Game.cells) and increments the neighbour counts of each of its neighbours, first adding a dead Cell if there is no Cell to represent a neighbour.</p>
+
+                <h4 id="game-repop" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.repopulate()</h4>
+                <p class="has-text-grey-lighter mb-4">Implements the rules and repopulates the Game accordingly.</p>
+                <p class="has-text-grey-lighter mb-4">The rules have been condensed and are described as follows:</p>
+                <p class="has-text-grey-lighter">For every active Cell (iterating over Game.cells) it lives to the next generation if it:</p>
+                <p class="has-text-grey-lighter"> - Is alive and has two or three neighbours.</p>
+                <p class="has-text-grey-lighter mb-4"> - Is not alive and has three neighbours.</p>
+                <p class="has-text-grey-lighter mb-4">All other active Cells are removed from the Game.</p>
+
+                <h4 id="game-trim" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.trim()</h4>
+                <p class="has-text-grey-lighter mb-4">Removes any empty border rows and columns.</p>
+                <p class="has-text-grey-lighter mb-4">By using the data structure outlined in Game.cells, this step can run more efficiently than if a 2D array was stored.</p>
+
+                <h4 id="game-dupl" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.duplicate()</h4>
+                <p class="has-text-grey-lighter mb-4">Returns a duplicate of the Game object.</p>
+                <p class="has-text-grey-lighter mb-4">Allows Game methods to be pure functions, not mutating the input Game.</p>
+
+                <h4 id="game-grid" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.grid</h4>
+                <p class="has-text-grey-lighter mb-4">Getter that returns a 2D Array representation of the Game.</p>
+
+                <h4 id="game-print" class="title is-4 has-text-grey-lighter has-text-weight-medium pt-6 mb-4 pb-3 has-underline">Game.print()</h4>
+                <p class="has-text-grey-lighter">Formats a string representing current state of Game and prints using console.log().</p>
+
+            </div>
+
+        </div>
+        </div>
+
+    </section>
+
+    <section class="page mt-6">
+        <div class="columns">
+            <div class="column is-3 ml-3 mt-4">
+                <aside class="menu">
+
+                    <ul class="menu-list mb-5">
+                        <li>
+                            <ul>
+                                <li><a onclick="toggleDemoBlurb()">Information</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p class="menu-label has-text-weight-bold is-size-6">Select seed</p>
+                    <ul class="menu-list mb-4">
+                        <li>
+                            <ul>
+                                <p class="menu-label is-size-7 has-text-weight-bold mb-1">STILL LIVES</p>
+                                <li><a class="seedMenu" id='block'>Block</a></li>
+                                <li><a class="seedMenu" id='loaf'>Loaf</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li>
+                            <ul>
+                                <p class="menu-label is-size-7 has-text-weight-bold mb-1">OSCILLATORS</p>
+                                <li><a class="seedMenu" id='beacon'>Beacon</a></li>
+                                <li><a class="seedMenu" id='pentadecathalon'>Pentadecathalon</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="menu-list">
+                        <li>
+                            <ul>
+                                <p class="menu-label is-size-7 has-text-weight-bold mb-1">SPACESHIPS</p>
+                                <li><a class="seedMenu" id='glider'>Glider</a></li>
+                                <li><a class="seedMenu" id='lwss'>Lightweight Spaceship</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <div class="column is-7">
+                <div id="demo-blurb" class="block">
+                    <h1 class="title is-2 has-text-grey has-text-weight-medium pb-3">Demos</h1>
+                    <p class="has-text-grey-lighter">Here you can view visualisations of various seeds being run by the program. The game state evolves to the next generation 5 times every second.</p>
+                    <p class="has-text-grey-lighter pt-3">The visualisations have been created using <a class="has-text-grey-light has-underline" href="https://p5js.org/" target="_blank">p5.js</a>. The sketches are embedded, with the program being executed in real time in the browser. All seed and p5 sketch data can be found in the <a class="has-text-grey-light has-underline" href="https://github.com/aabbabar/game-of-life" target="_blank">GitHub repo</a>.</p>
+                    <p class="has-text-grey-lighter pt-3 mt-3">Select a seed from the menu to begin.</p>
+                </div>
+
+                <div class="block is-flex is-flex-direction-column is-align-items-center">
+                    <div class="p5container" id="demoContainer" style="width: 330px;">
+                        <!-- <iframe src="./sketches/html/pentadecathalon.html" scrolling="no" frameborder="0"></iframe> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page">
+        <div class="columns is-flex is-flex-direction-column is-align-items-center mt-6">
+            <div class="column is-9 offset-3">
+                <h1 class="title is-2 has-text-grey has-text-weight-medium pb-3">CLI explorer</h1>
+                <p class="has-text-grey-lighter mb-3">There is additionally a Command Line Interface tool for exploring the program. This allows for procedural testing of specific scenarios, allowing the user to view the data at every stage of the game.</p>
+                <p class="has-text-grey-lighter mb-3">The CLI is powered by Node.js, and uses the <a class="has-text-grey-light has-underline" href="https://www.npmjs.com/package/prompts" target="_blank">prompts library</a> to build the interface.</p>
+
+                <div class="block is-flex is-flex-direction-row is-align-items-center is-justify-content-startt my-4 py-4">
+                    <div class="column is-9">
+                        <img src='./site/img/cli.png'>
+                    </div>
+                </div>
+
+                <h1 class="title is-4 has-text-grey has-text-weight-medium mt-4">Installation</h1>
+                <p class="has-text-grey-lighter mb-3">If you do not already have it installed, you will need to <a class="has-text-grey-light has-underline" href="https://nodejs.org/en/download/" target="_blank">install Node</a>.</p>
+                <p class="has-text-grey-lighter">To check if you have Node installed, open a terminal and enter:</p>
+                <pre>
+                    <code>node --version</code>
+                </pre>
+                <p class="has-text-grey-lighter mb-3">If installed it will return a version number.</p>
+                <p class="has-text-grey-lighter">Next, clone the github repo to your local machine. Change the current working directory to where you want the cloned directory, and run:</p>
+                <pre>
+                    <code>$ git clone https://github.com/aabbabar/game-of-life</code>
+                </pre>
+                <p class="has-text-grey-lighter">Then to install required Node modules, run:</p>
+                <pre>
+                    <code>$ npm install</code>
+                </pre>
+                <p class="has-text-grey-lighter">Finally, to run the CLI tool:</p>
+                <pre>
+                    <code>$ npm start</code>
+                </pre>
+
+            </div>
+        </div>
+    </section>
+
+    <script src="lib/navbar.js"></script>
+    <script src="site/js/app.js"></script>
+</body>
+
+</html>
